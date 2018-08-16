@@ -35,7 +35,7 @@ set_terraform_environment: &set_terraform_environment
     command: |
       cd && touch $BASH_ENV
 
-      if [ "${CIRCLE_BRANCH}" == "master" ]; then
+      if [ "${CIRCLE_TAG}" =~ ^v[\s]*[\.\d]*$ ]; then
         echo 'export TERRAFORM_ENVIRONMENT=production' >> $BASH_ENV
       else
         echo 'export TERRAFORM_ENVIRONMENT=dev' >> $BASH_ENV
