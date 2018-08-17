@@ -30,7 +30,7 @@ resource "aws_iam_group_membership" "ci" {
 
 resource "aws_iam_user_policy" "deployer" {
   name = "${aws_iam_user.deployer.name}"
-  user = ["${aws_iam_user.deployer.name}"]
+  user = "${aws_iam_user.deployer.name}"
 
   # Based on https://gist.github.com/magnetikonline/5034bdbb049181a96ac9
   # and https://gist.github.com/jakubholynet/0055cf69b5b2a9554af67a11828209a5
