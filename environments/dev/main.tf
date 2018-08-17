@@ -1,14 +1,19 @@
 variable "app-name" {
   type    = "string"
-  default = "assessmentsapi-dev"
+  default = "assessments-api"
+}
+
+variable "app-env" {
+  type    = "string"
+  default = "Dev"
 }
 
 variable "tags" {
   type = "map"
 
   default {
-    Service     = "assessmentsapi"
-    Environment = "Dev"
+    Service     = "assessments-api"
+    Environment = "${var.app-env}"
   }
 }
 
@@ -18,7 +23,7 @@ resource "aws_elastic_beanstalk_application" "app" {
 }
 
 resource "aws_elastic_beanstalk_environment" "app-env" {
-  name                = "${var.app-name}"
+  name                = "${aws_elastic_beanstalk_application.app.name}-${lower(var.app-env)}"
   application         = "${aws_elastic_beanstalk_application.app.name}"
   solution_stack_name = "${var.elastic-beanstalk-single-docker}"
   tier                = "WebServer"

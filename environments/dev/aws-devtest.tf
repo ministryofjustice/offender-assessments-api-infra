@@ -25,7 +25,17 @@ provider "aws" {
 
 variable "elastic-beanstalk-single-docker" {
   type    = "string"
+  default = "64bit Amazon Linux 2018.03 v2.12.1 running Docker 18.03.1-ce"
+}
+
+variable "elastic-beanstalk-Java" {
+  type    = "string"
   default = "64bit Amazon Linux 2018.03 v2.7.3 running Java 8"
+}
+
+variable "elastic-beanstalk-Node" {
+  type    = "string"
+  default = "64bit Amazon Linux 2018.03 v4.5.2 running Node.js"
 }
 
 locals {
