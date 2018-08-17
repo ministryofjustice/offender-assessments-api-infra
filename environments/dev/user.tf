@@ -31,6 +31,7 @@ resource "aws_iam_group_membership" "ci" {
 resource "aws_iam_user_policy" "deployer" {
   name = "${aws_iam_user.deployer.name}"
   user = "${aws_iam_user.deployer.name}"
+
   policy = <<JSON
 {
     "Version": "2012-10-17",
@@ -60,6 +61,7 @@ resource "aws_iam_group" "deployers" {
 resource "aws_iam_group_policy" "deployers" {
   name  = "elasticbeanstalk-deployment"
   group = "${aws_iam_group.deployers.name}"
+
   policy = <<JSON
 {
     "Version": "2012-10-17",
