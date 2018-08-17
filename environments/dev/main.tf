@@ -8,10 +8,8 @@ variable "app-env" {
   default = "Dev"
 }
 
-variable "tags" {
-  type = "map"
-
-  default {
+locals {
+  "tags" = {
     Service     = "assessments-api"
     Environment = "${var.app-env}"
   }
@@ -102,5 +100,5 @@ resource "aws_elastic_beanstalk_environment" "app-env" {
     value     = "true"
   }
 
-  tags = "${var.tags}"
+  tags = "${local.tags}"
 }
